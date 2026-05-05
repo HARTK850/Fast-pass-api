@@ -174,7 +174,7 @@ class LocalSearchEngine {
 
     loadDatabase(filePath) {
         try {
-            const absolutePath = path.resolve(process.cwd(), filePath);
+            const absolutePath = path.join(__dirname, filePath);
             const data = fs.readFileSync(absolutePath, 'utf8');
             const rows = data.split('\n');
             
@@ -483,7 +483,7 @@ app.use(express.json());
 /**
  * Main Webhook Endpoint for Yemot API
  */
-app.all('/api/ivr', async (req, res) => {
+app.all('*', async (req, res) => {
     Logger.info("Received request from Yemot");
     
     try {
